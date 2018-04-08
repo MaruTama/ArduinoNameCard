@@ -112,11 +112,12 @@ ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATME
 ## 名前等を挿入する
 画像からPCBのコンポーネントを作成します。
 
-1.名刺上の空き領域のサイズに合わせて画像を作成する
-dpiは1000程度にします
+1.名刺上の空き領域のサイズに合わせて画像を作成する  
+dpiは1000程度にします  
 ![](./res/img/create_img.png)
 
 2.画像に図や文字を入力します  
+![](./res/img/input_fig.png)
 
 3.もし、カラーの場合は画像を二値化します  
 
@@ -125,7 +126,7 @@ dpiは1000程度にします
 ![](./res/img/invert_img.png)
 
 5.コンポーネントを作成します  
-bimmpa to componentを起動します
+bimmpa to componentを起動します  
 ![](./res/img/bmp2cmp.png)  
 　シルクを作成する場合 --> 6へ  
 　銅箔で作成する場合  --> 7へ  
@@ -133,32 +134,31 @@ bimmpa to componentを起動します
 6.シルクで作成します  
 Resolutionが1000dpi程度であることを確認します  
 「Front silk screen」にチェックを入れます  
-「Export」でファイル(name_silk.kicad_mod)を出力します
-
+「Export」でファイル(name_silk.kicad_mod)を出力します  
 ![](./res/img/make_silk.png)
 
-7.銅箔で作成します
+7.銅箔で作成します  
 Resolutionが1000dpi程度であることを確認します  
-「Front solder mask」にチェックを入れます
+「Front solder mask」にチェックを入れます  
 2つファイルを出力します  
 「Export」でファイル(name_mask.kicad_mod)を出力します  
 再度, 「Export」でファイル(name_cu.kicad_mod)を出力します  
 ![](./res/img/make_cu.png)
 
-name_cu.kicad_modを開き "fp_ploy" 以降に含まれる "F.Mask" を "F.Cu"に置換します
+name_cu.kicad_modを開き "fp_ploy" 以降に含まれる "F.Mask" を "F.Cu"に置換します  
 ![](./res/img/rename_mask2cu.png)
 
 
 8.コンポーネントをライブラリに追加する  
-作業ライブラリとしてArduinoNameCardを選択します
+作業ライブラリとしてArduinoNameCardを選択します  
 ![](./res/img/import0.png)
 
-先ほど、出力したファイルを読み込みます
+先ほど、出力したファイルを読み込みます  
 ![](./res/img/import1.png)
 
 ライブラリにコンポーネントを保存する  
-今回はsilkなのでname_silkとして保存します
-銅箔で作成している場合は, name_cuとname_maskで読み込み,保存します
+今回はsilkなのでname_silkとして保存します  
+銅箔で作成している場合は, name_cuとname_maskで読み込み,保存します  
 ![](./res/img/import2.png)
 
 9.基板上に展開します  
@@ -166,11 +166,11 @@ name_cu.kicad_modを開き "fp_ploy" 以降に含まれる "F.Mask" を "F.Cu"�
 銅箔の場合にはname_cuとname_maskを重ねて配置します  
 ![](./res/img/mask_and_cu.png)
 
-10.GNDのベタ塗りをします
+10.GNDのベタ塗りをします  
 ![](./res/img/beta_GND.png)
 
-11.確認する
-view -> 3D viewer で3Dビューアーで確認できる
+11.確認
+view -> 3D viewer で3Dビューアーで確認できます  
 ![](./res/img/3Dviewer.png)
 
 
@@ -178,9 +178,20 @@ view -> 3D viewer で3Dビューアーで確認できる
 ## 基板を発注する
 参考:[★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方。](http://atmel.client.jp/fusionpcb.html)
 
-厚みは1mmで注文して削る
+file -> plot でgerverの出力をします
+![](./res/img/output_gerver.png)
+ドリルデータを出力します
+![](./res/img/output_drill.png)
 
+gerverデータをリネームします
+![](./res/img/renamed.png)
 
+seeed fusion のプレビューで確認できます
+![](./res/img/top_green.png)
+![](./res/img/bottom_green.png)
+![](./res/img/bottom_black.png)
+
+厚みは0.6mmで注文する
 
 ## 部品を発注する
 serial変換部分
@@ -222,7 +233,14 @@ Arduino互換部分
 | GND         | 3 or 5        | GND |
 
 ## 出力端子クリップの作成
+丸ピンの片側を切ります
 ![](./res/img/IMG_20180408_163213.jpg)
+
+１００均で買った洗濯バサミに穴を開けます
 ![](./res/img/IMG_20180408_163228.jpg)
+
+開けた穴に丸ピンとメスコネクタを差し込み、ハンダ付けします
 ![](./res/img/IMG_20180408_163235.jpg)
+
+このようにハンダ付けしなくてもポートを使うことができます
 ![](./res/img/IMG_20180407_155647.jpg)
