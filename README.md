@@ -96,14 +96,117 @@ $ sudo apt install kicad
 | ArduinoNameCard | ${KIPRJMOD}/res/lib/ArduinoNameCard.pretty |
 
 ### kicadライブラリ
+
+基本的にチップ部品は, 次のサイズに統一しています
+
+|   EIA  |   JIS  |
+|:-------|:-------|
+| 0805 | 2012 |
+
 FT232RL.libに関しては,
 ["Quick KICAD Library Component Builder"](http://kicad.rohrbacher.net/quicklib.php)というサービスにて作成しました
 
 ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATMEGA328-AU/Atmel/view-part/)からダウンロードしました
 
 
-## 名前等をフットプリントとして挿入する
+## 名前等を挿入する
+画像からPCBのコンポーネントを作成します。
 
+1.名刺上の空き領域のサイズに合わせて画像を作成する
+dpiは1000程度にします
+![](./res/img/create_img.png)
+
+2.画像に図や文字を入力します  
+
+3.もし、カラーの場合は画像を二値化します  
+
+4.黒地白字にします  
+白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます。
+![](./res/img/invert_img.png)
+
+5.コンポーネントを作成します  
+bimmpa to componentを起動します
+![](./res/img/bmp2cmp.png)  
+　シルクを作成する場合 --> 6へ  
+　銅箔で作成する場合  --> 7へ  
+
+6.シルクで作成します  
+Resolutionが1000dpi程度であることを確認します  
+「Front silk screen」にチェックを入れます  
+「Export」でファイル(name_silk.kicad_mod)を出力します
+
+![](./res/img/make_silk.png)
+
+7.銅箔で作成します
+Resolutionが1000dpi程度であることを確認します  
+「Front solder mask」にチェックを入れます
+2つファイルを出力します  
+「Export」でファイル(name_mask.kicad_mod)を出力します  
+再度, 「Export」でファイル(name_cu.kicad_mod)を出力します  
+![](./res/img/make_cu.png)
+
+name_cu.kicad_modを開き "fp_ploy" 以降に含まれる "F.Mask" を "F.Cu"に置換します
+![](./res/img/rename_mask2cu.png)
+
+
+8.コンポーネントをライブラリに追加する  
+作業ライブラリとしてArduinoNameCardを選択します
+![](./res/img/import0.png)
+
+先ほど、出力したファイルを読み込みます
+![](./res/img/import1.png)
+
+ライブラリにコンポーネントを保存する  
+今回はsilkなのでname_silkとして保存します
+銅箔で作成している場合は, name_cuとname_maskで読み込み,保存します
+![](./res/img/import2.png)
+
+9.基板上に展開します  
+シルクの場合は, name_silkを読み込み反転して配置します  
+銅箔の場合にはname_cuとname_maskを重ねて配置します  
+![](./res/img/mask_and_cu.png)
+
+10.GNDのベタ塗りをします
+![](./res/img/beta_GND.png)
+
+11.確認する
+view -> 3D viewer で3Dビューアーで確認できる
+![](./res/img/3Dviewer.png)
+
+
+
+## 基板を発注する
+参考:[★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方。](http://atmel.client.jp/fusionpcb.html)
+
+厚みは1mmで注文して削る
+
+
+
+## 部品を発注する
+serial変換部分
+
+| 部品 | １枚で使用する個数 | 秋月またはDigKeyでの値段 |
+|:------------|:--------------|:----------------|
+| [FT232RL](http://akizukidenshi.com/catalog/g/gI-01739/)  | 1 | ¥400 |
+| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
+| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 2 | ¥150 |
+| [10µF](http://akizukidenshi.com/catalog/g/gP-07388/) | 1 | ¥150 |
+| [赤LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LS-R976-NR-1/475-1278-1-ND/1642798)| 1 | ¥286 |
+| [緑LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LG-R971-KN-1/475-1410-1-ND/1802598) | 1 | ¥271 |
+
+Arduino互換部分
+
+| 部品 | １枚で使用する個数 | 秋月またはDigKeyでの値段 |
+|:------------|:--------------|:----------------|
+| [ATMEGA328P-AU](http://akizukidenshi.com/catalog/g/gI-04386/)  | 1 | ¥230 |
+| [水晶発振子 16MHz](http://akizukidenshi.com/catalog/g/gP-08671/) | 1 | ¥30 |
+| [10kΩ](http://akizukidenshi.com/catalog/g/gR-11797/) | 1 | ¥100 |
+| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
+| [330Ω](https://www.digikey.jp/product-detail/ja/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥19 |
+| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 1 | ¥150 |
+|  [22pF](https://www.digikey.jp/product-detail/ja/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930)          | 2 | ¥295 |
+| [赤LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LS-R976-NR-1/475-1278-1-ND/1642798)| 1 | ¥286 |
+| [タクトスイッチ](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
 
 ## ブートローダーの書き込み
 書き込みの方法は、["ATMEGA328P を Arduino として使う"](https://ht-deko.com/arduino/atmega328p.html)を参照してください  
@@ -117,3 +220,9 @@ ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATME
 | D13 (SCK)   | 13 (SCK)      | D13 |
 | 5V          | 4 or 6        | 5V  |
 | GND         | 3 or 5        | GND |
+
+## 出力端子クリップの作成
+![](./res/img/IMG_20180408_163213.jpg)
+![](./res/img/IMG_20180408_163228.jpg)
+![](./res/img/IMG_20180408_163235.jpg)
+![](./res/img/IMG_20180407_155647.jpg)
