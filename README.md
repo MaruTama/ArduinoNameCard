@@ -207,8 +207,8 @@ serial変換部分
 | [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
 | [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 2 | ¥150 |
 | [10µF](http://akizukidenshi.com/catalog/g/gP-07388/) | 1 | ¥150 |
-| [赤LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LS-R976-NR-1/475-1278-1-ND/1642798)| 1 | ¥286 |
-| [緑LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LG-R971-KN-1/475-1410-1-ND/1802598) | 1 | ¥271 |
+| [赤LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
+| [緑LED](http://akizukidenshi.com/catalog/g/gI-06492/)| 1 | ¥150 |
 
 Arduino互換部分
 
@@ -221,8 +221,8 @@ Arduino互換部分
 | [330Ω](https://www.digikey.jp/product-detail/ja/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥19 |
 | [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 1 | ¥150 |
 |  [22pF](https://www.digikey.jp/product-detail/ja/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930)          | 2 | ¥295 |
-|  [ヒューズ](http://akizukidenshi.com/catalog/g/gP-12636/)          | 1 | ¥200 |
-| [赤LED](https://www.digikey.jp/product-detail/ja/osram-opto-semiconductors-inc/LS-R976-NR-1/475-1278-1-ND/1642798)| 1 | ¥286 |
+| [ヒューズ](http://akizukidenshi.com/catalog/g/gP-12636/)          | 1 | ¥200 |
+| [赤LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
 | [タクトスイッチ](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
 
 ## ブートローダーの書き込み
