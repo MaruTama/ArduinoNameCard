@@ -1,8 +1,8 @@
 # Arduino 名刺
-これはArduino uno互換基板の名刺のテンプレートです.
+これはArduino uno互換基板の名刺のテンプレートです.  
 twoBoardは、2枚の面付け基板として作成するものです.  100mm×100mmに収まるサイズになっています.  
 ![](./res/img/front_of_card.png)  
-![](./res/img/back_of_card.png)
+![](./res/img/back_of_card.png)  
 
 # 環境バージョン
 KiCad 4.0.7  
