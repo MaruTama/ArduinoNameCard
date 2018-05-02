@@ -146,7 +146,6 @@ Resolutionが1000dpi程度であることを確認します
 **7.銅箔で作成します**  
 Resolutionが1000dpi程度であることを確認します  
 「Front solder mask」にチェックを入れます  
-2つファイルを出力します  
 「Export」でファイル(name_mask.kicad_mod)を出力します  
 ![](./res/img/make_mask.png)  
 
@@ -160,7 +159,7 @@ Resolutionが1000dpi程度であることを確認します
 $ cd 本プロジェクトのルート
 $ python python/main.py  res/lib/ArduinoNameCard.pretty/name_mask.kicad_mod
 ```
-すると，　name_mask_and_cu.kicad_mod が生成される  
+すると，　name_mask_and_cu.kicad_mod が生成されます    
 
 (もし，生成されない場合は，name_cu.kicad_modを開き "fp_ploy" 以降に含まれる項目をコピーしておき，"F.Mask" を "F.Cu"に置換後，コピーした内容を追記してname_mask_and_cu.kicad_modとして保存する)  
 
