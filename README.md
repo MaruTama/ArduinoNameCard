@@ -216,7 +216,7 @@ seeed fusion のプレビューで確認できます
 ![](./res/img/top_green.png)  
 ![](./res/img/bottom_green.png)  
 
-面付け基板の場合は厚みは**0.8mm**で注文します
+基板の厚みは**0.6mm**で注文します
 
 ## 部品を発注する
 serial変換部分
