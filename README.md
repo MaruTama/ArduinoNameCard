@@ -1,11 +1,14 @@
 # Arduino 名刺
 これはArduino uno互換基板の名刺のテンプレートです.
+twoBoardは、2枚の面付け基板として作成するものです.  100mm×100mmに収まるサイズになっています.  
+![](./res/img/front_of_card.png)  
+![](./res/img/back_of_card.png)
 
 # 環境バージョン
 KiCad 4.0.7  
 ArduinoIDE 1.8.2  
 Ubuntu 16.04(当方)  
-基本的にArduinoIDEとKiCadはクロスプラットフォームでOS依存しないので、OSは問いません.
+基本的にArduinoIDEとKiCadはクロスプラットフォームでOS依存しないので，OSは問いません.
 
 # 環境構築方法
 ## ArduinoIDEのインストール
@@ -38,7 +41,7 @@ brew cask install arduino
 ```
 
 ### Ubuntu
-["ここ"](https://www.arduino.cc/en/Main/Software)から、最新のlinux 32 or 64.zipをダウンロードします.    
+["ここ"](https://www.arduino.cc/en/Main/Software)から，最新のlinux 32 or 64.zipをダウンロードします.    
 ダウンロードしたファイルが arduino-1.8.2-linux64.tar.xz の時のインストール方法は以下のとおりです.
 ```
 $ sudo tar -Jxvf arduino-1.8.2-linux64.tar.xz -C /usr/share
@@ -62,13 +65,13 @@ chocoでのインストールする場合は次のコマンドを実行します
 > choco install kicad
 ```
 
-インストーラーを用いてインストールする場合は、下記の公式サイトからインストーラーをダウンロードします.  
+インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.  
 [http://kicad-pcb.org/download/windows/](http://kicad-pcb.org/download/windows/)
 
 ### mac
-インストーラーを用いてインストールする場合は、下記の公式サイトからインストーラーをダウンロードします.  
-"KiCad main package"は、ライブラリをgithubに置いているもの.  
-"KiCad extras"は、ライブラリをローカルに置くもの.  
+インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.  
+"KiCad main package"は，ライブラリをgithubに置いているもの.  
+"KiCad extras"は，ライブラリをローカルに置くもの.  
 [http://kicad-pcb.org/download/osx/](http://kicad-pcb.org/download/osx/)
 
 ### ubuntu
@@ -81,7 +84,7 @@ $ sudo apt install kicad
 ```
 
 ## Kicadの設定
-コンポーネントライブラリは「〜.libファイル」で、そのファイル中に各コンポーネントが内包されています  
+コンポーネントライブラリは「〜.libファイル」で，そのファイル中に各コンポーネントが内包されています  
 
 コンポーネントライブラリのパス  
 
@@ -89,7 +92,7 @@ $ sudo apt install kicad
 |:------------|:--------------|
 | res/lib/ArduinoNameCard.lib | res/lib |
 
-フットプリントライブラリは「〜.pretty」というフォルダで、各フットプリントのファイル「.kicad_mod」が入っています  
+フットプリントライブラリは「〜.pretty」というフォルダで，各フットプリントのファイル「.kicad_mod」が入っています  
 
 フットプリントのライブラリのパス
 
@@ -112,7 +115,7 @@ ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATME
 
 
 ## 名前等を挿入する
-画像からPCBのコンポーネントを作成します。
+画像からPCBのフットプリントを作成します．
 
 **1.名刺上の空き領域のサイズに合わせて画像を作成する**  
 dpiは1000程度にします  
@@ -122,13 +125,13 @@ dpiは1000程度にします
 **2.画像に図や文字を入力します**  
 ![](./res/img/input_fig.png)  
 
-**3.もし、カラーの場合は画像を二値化します**  
+**3.もし，カラーの場合は画像を二値化します**  
 
 **4.黒地白字にします**  
-白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます。
+白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます．
 ![](./res/img/invert_img.png)  
 
-**5.コンポーネントを作成します**  
+**5.フットプリントを作成します**  
 bimmpa to componentを起動します  
 ![](./res/img/bmp2cmp.png)  
 　シルクを作成する場合 --> 6へ  
@@ -145,41 +148,79 @@ Resolutionが1000dpi程度であることを確認します
 「Front solder mask」にチェックを入れます  
 2つファイルを出力します  
 「Export」でファイル(name_mask.kicad_mod)を出力します  
-再度, 「Export」でファイル(name_cu.kicad_mod)を出力します  
-![](./res/img/make_cu.png)  
+![](./res/img/make_mask.png)  
 
-name_cu.kicad_modを開き "fp_ploy" 以降に含まれる "F.Mask" を "F.Cu"に置換します  
-![](./res/img/rename_mask2cu.png)  
+出力したname_mask.kicad_modのフットプリントを加工します  
+具体的にはレジストマスクと銅箔のフットプリントにします  
+
+スクリプトはpythonで記述されています．  
+次のコマンドを実行するとフットプリントが作成されます
+
+```
+$ cd 本プロジェクトのルート
+$ python python/main.py  res/lib/ArduinoNameCard.pretty/name_mask.kicad_mod
+```
+すると，　name_mask_and_cu.kicad_mod が生成される  
+
+(もし，生成されない場合は，name_cu.kicad_modを開き "fp_ploy" 以降に含まれる項目をコピーしておき，"F.Mask" を "F.Cu"に置換後，コピーした内容を追記してname_mask_and_cu.kicad_modとして保存する)  
 
 
-**8.コンポーネントをライブラリに追加する**  
+**8.フットプリントをライブラリに追加する**  
 作業ライブラリとしてArduinoNameCardを選択します  
 ![](./res/img/import0.png)  
 
-先ほど、出力したファイルを読み込みます  
+先ほど，出力したファイルを読み込みます  
 ![](./res/img/import1.png)  
 
 ライブラリにコンポーネントを保存する  
-今回はsilkなのでname_silkとして保存します  
-銅箔で作成している場合は, name_cuとname_maskで読み込み,保存します  
+シルクで作成している場合は，name_silkとして保存します  
+銅箔で作成している場合は, name_mask_and_cuとして保存します  
 ![](./res/img/import2.png)  
 
 **9.基板上に展開します**  
-シルクの場合は, name_silkを読み込み反転して配置します  
-銅箔の場合にはname_cuとname_maskを重ねて配置します  
-![](./res/img/mask_and_cu.png)  
+すでにあるフットプリントを置換するのが一番楽です  
+置換したいフットプリント上で右クリックして  
+フットプリントの交換 -> フットプリント G*** でウィンドウが開きます    
+![](./res/img/change_footprint.png)  
+フットプリントのリストを押して、保存したフットプリントを選択します  
+![](./res/img/list_of_footprint.png)  
+適用を押すとフットプリントが変更されています  
+![](./res/img/apply_footprint.png)  
 
 **10.GNDのベタ塗りをします**  
 ![](./res/img/beta_GND.png)  
 
-**11.確認**  
+**11.面付けにする**  
+
+基板を範囲選択します
+![](./res/img/choice_block.png)　　
+
+ピッタリ基板同士が揃う位置を見つけたら、右クリック -> ブロックをコピー で基板を複製します．  
+![](./res/img/copy_block.png)  
+
+重なっている枠線は不要であるため削除します  
+右クリック -> 図形の削除 で削除できます（削除する図形はどちらでも構いません）
+![](./res/img/delete_edge0.png)  
+
+2つの基板間にを突き抜ける枠線(Edge.Cuts)を引きます.  
+![](./res/img/draw_Vcut_line.png)  
+
+先ほど引いた枠線の隣にシルクで"v-cut"を記述します.  
+![](./res/img/set_Vcut_silk0.png)  
+![](./res/img/set_Vcut_silk1.png)  
+
+再度、重なっている枠線を削除します．  
+今回は短い方の枠線を削除します.  
+![](./res/img/delete_edge1.png)
+
+**12.確認**  
 view -> 3D viewer で3Dビューアーで確認できます   
 ![](./res/img/3Dviewer.png)  
 
 
 
 ## 基板を発注する
-ガーバーの作成方法は, [★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方。](http://atmel.client.jp/fusionpcb.html)を参照してください  
+ガーバーの作成方法は, [★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方．](http://atmel.client.jp/fusionpcb.html)を参照してください  
 
 file -> plot でgerverの出力をします  
 ![](./res/img/output_gerver.png)  
@@ -190,13 +231,14 @@ file -> plot でgerverの出力をします
 gerverデータをリネームします  
 ![](./res/img/renamed.png)  
 
+exportフォルダごと圧縮して, zipにまとめます
+
 seeed fusion のプレビューで確認できます  
 好きな色を選択します  
 ![](./res/img/top_green.png)  
 ![](./res/img/bottom_green.png)  
-![](./res/img/bottom_black.png)  
 
-**厚みは0.6mmで注文します**
+面付け基板の場合は厚みは**0.8mm**で注文します
 
 ## 部品を発注する
 serial変換部分
@@ -226,7 +268,7 @@ Arduino互換部分
 | [タクトスイッチ](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
 
 ## ブートローダーの書き込み
-書き込みの方法は、["ATMEGA328P を Arduino として使う"](https://ht-deko.com/arduino/atmega328p.html)を参照してください  
+書き込みの方法は，["ATMEGA328P を Arduino として使う"](https://ht-deko.com/arduino/atmega328p.html)を参照してください  
 次の組み合わせでArduinoUNOと名刺基板を接続します  
 
 | Arduino UNO | ATMEGA328P-AU | 名刺（基板）での位置 |
@@ -239,13 +281,16 @@ Arduino互換部分
 | GND         | 3 or 5        | GND |
 
 ## 出力端子クリップの作成
+ただ，これは通電していないピンがあるときがあるので要注意．  
+対処法は思案中です.  
+
 丸ピンの片側を切ります
 ![](./res/img/IMG_20180408_163213.jpg)
 
 １００均で買った洗濯バサミに穴を開けます
 ![](./res/img/IMG_20180408_163228.jpg)
 
-開けた穴に丸ピンとメスコネクタを差し込み、ハンダ付けします
+開けた穴に丸ピンとメスコネクタを差し込み，ハンダ付けします
 ![](./res/img/IMG_20180408_163235.jpg)
 
 このようにハンダ付けしなくてもポートを使うことができます
