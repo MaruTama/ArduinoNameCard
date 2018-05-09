@@ -5,6 +5,8 @@ masterは1枚のみであり，91×55mmの名刺サイズで作成していま�
 [twoBoards](https://github.com/MaruTama/ArduinoNameCard/tree/twoBoards)ブランチに移動してください.  
 ![](./res/img/front_of_card.png)  
 ![](./res/img/back_of_card.png)  
+sampleのblinkを書き込んだもの  
+![](./res/img/blink.gif)  
 
 # 環境バージョン
 KiCad 4.0.7  
@@ -246,19 +248,33 @@ Arduino互換部分
 | [タクトスイッチ](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
 
 ## ブートローダーの書き込み
-書き込みの方法は，["ATMEGA328P を Arduino として使う"](https://ht-deko.com/arduino/atmega328p.html)を参照してください  
-次の組み合わせでArduinoUNOと名刺基板を接続します  
+書き込みの方法は，optifixで書き込みます．  
+手順に関しましては, ["【Arduino 1.6.3】 Arduino UnoでATmega328P-PUにブートローダを書き込む"](http://ijmp320.hatenablog.jp/entry/2015/05/16/121922)を参照してください  
+
+当方では，["ICソケット"](http://www.aitendo.com/product/15796)を用いて，はんだ付けよりも先に書き込みを行っています  
+
+
+次の組み合わせでArduinoUNOとATMEGA328P-AUを接続します.  
 
 | Arduino UNO | ATMEGA328P-AU | 名刺（基板）での位置 |
 |:------------|:--------------|:----------------|
 | D10 (SS)    | 29 (RESET)    | RST |
 | D11 (MOSI)  | 15 (MOSI)     | D11 |
 | D12 (MISO)  | 16 (MISO)     | D12 |
-| D13 (SCK)   | 13 (SCK)      | D13 |
+| D13 (SCK)   | 17 (SCK)      | D13 |
 | 5V          | 4 or 6        | 5V  |
 | GND         | 3 or 5        | GND |
 
+## はんだ付け
+FT232RLはピン間が狭く，はんだ付けするのが困難です.  
+普通にはんだ付けもできますが，次のような手順で行うことを推奨します.  
+
+先にランドに，軽くはんだを付けておきます.  
+足を揃え，上からこてを当てて固定します.  
+写真は後で実装  
+
 ## 出力端子クリップの作成
+出力端子に関しては、はんだ付けせずとも使えるようにしたいと考え，クリップを作成しました.  
 ただ，これは通電していないピンがあるときがあるので要注意．  
 対処法は思案中です.  
 
