@@ -6,7 +6,7 @@ import os.path
 args = sys.argv
 file_name =  args[1]
 
-#テキストファイルの読み込み
+#ファイルの読み込み
 with open(file_name, "r") as f:  #　txt形式の読み込み
     data = f.read()                # ひとまとまりのデータとして読み込む
 
