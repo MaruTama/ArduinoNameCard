@@ -6,8 +6,8 @@ import os.path
 args = sys.argv
 file_name =  args[1]
 
-#テキストファイルの読み込み
-with open(file_name, "r") as f:  #　txt形式の読み込み
+#ファイルの読み込み
+with open(file_name, "r") as f:  #　読み込み
     data = f.read()                # ひとまとまりのデータとして読み込む
 
 # (fp_poly 任意の文字列 (layer F.Mask) 任意の文字列)改行があるかも)の繰り返し 改行)EOFとなっているので、
@@ -36,7 +36,7 @@ else:
 root, ext = os.path.splitext(file_name)
 # 書き込み
 new_file_name = "{}_and_cu{}".format(root,ext)
-with open(new_file_name, "w") as f:  #　txt形式の読み込み
+with open(new_file_name, "w") as f:
     f.write(data)
 
 print("完了しました")
