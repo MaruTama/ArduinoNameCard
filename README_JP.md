@@ -1,14 +1,14 @@
 # Arduino 名刺
-これはArduino uno互換基板の名刺のテンプレートです.  
+This is template what compatible board of Arduino uno.
 masterは1枚のみであり，91×55mmの名刺サイズで作成しています.  
 
 もし, 2枚の面付け基板として作成したい場合は，
-[twoBoards](https://github.com/MaruTama/ArduinoNameCard/tree/twoBoards)ブランチを参照してください.  
+[twoBoards](https://github.com/MaruTama/ArduinoNameCard/tree/twoBoards)ブランチを参照してください.
 
 ![front_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/2e77843c-6e1c-10d9-aa70-b0e3f751a8f0.png)
 ![back_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/a7862201-bba9-eaf6-7349-21dd4562ff36.png)
 
-sample code の blink を書き込んだときの動作です.  
+sample code の blink を書き込んだもの
 ![blink.gif](https://qiita-image-store.s3.amazonaws.com/0/70879/a106e90a-53b5-c583-1349-2a9e9be3a7ac.gif)
 
 # 環境バージョン
@@ -17,41 +17,41 @@ sample code の blink を書き込んだときの動作です.
 - GIMP 2.8
 - Ubuntu 16.04 and macOS High Sierra (当方)
 
-基本的に ArduinoIDE と KiCad, GIMP はクロスプラットフォームで OS 依存しないので， OS は問いません.  
+基本的に ArduinoIDE と KiCad, GIMP はクロスプラットフォームで OS 依存しないので， OS は問いません.
 
 # 環境構築方法
 ## ArduinoIDEのインストール
 ### windows
-直接公式からダウンロードのダウンロードに時間がかかることがあったので,  
-Chocolateyでインストールするのがオススメです.  
+直接公式からダウンロードのダウンロードに時間がかかることがあったので,
+Chocolateyでインストールするのがオススメです.　　
 
 Chocolateyのインストールは,
 ["Chocolateyを使った環境構築の時のメモ"](https://qiita.com/konta220/items/95b40b4647a737cb51aa)
-を参照してください.  
+を参照してください.
 
-管理者権限でcmd or PowerShellを開き, ArduinoIDEのインストールします.  
+管理者権限でcmd or PowerShellを開き, ArduinoIDEのインストールします.
 
 ```
 > choco upgrade chocolatey
 > choco install arduino
 ```
 
-2回質問が来るのですが "Yes" で構いません.  
+2回質問が来るのですが "Yes" で構いません.
 ![win_choco.png](https://qiita-image-store.s3.amazonaws.com/0/70879/615bbdf1-cf88-8f4c-6558-ce8a967dd668.png)
 
-ドライバーをインストールするか数回問われるので, すべてインストールします.  
+ドライバーをインストールするか数回問われるので, すべてインストールします.
 ![win_driver.png](https://qiita-image-store.s3.amazonaws.com/0/70879/f9474547-8c4a-2e98-b71c-518dcd02a14a.png)
 
 ### mac
-macはbrewでインストールします.  
+macはbrewでインストール
 
 ```.sh
 brew cask install arduino
 ```
 
 ### Ubuntu
-["ここ"](https://www.arduino.cc/en/Main/Software)から，最新のlinux 32 or 64.zipをダウンロードします.  
-ダウンロードしたファイルが arduino-1.8.2-linux64.tar.xz の時のインストール方法は以下のとおりです.  
+["ここ"](https://www.arduino.cc/en/Main/Software)から，最新のlinux 32 or 64.zipをダウンロードします.    
+ダウンロードしたファイルが arduino-1.8.2-linux64.tar.xz の時のインストール方法は以下のとおりです.
 
 ```.sh
 $ sudo tar -Jxvf arduino-1.8.2-linux64.tar.xz -C /usr/share
@@ -69,7 +69,7 @@ $ sudo arduino
 ## Kicadのインストール
 ### windows
 #### choco でインストール
-chocoでのインストールする場合は次のコマンドを実行します.  
+chocoでのインストールする場合は次のコマンドを実行します
 
 ```.sh
 > choco upgrade chocolatey
@@ -80,13 +80,13 @@ chocoでのインストールする場合は次のコマンドを実行します
 [http://kicad-pcb.org/download/windows/](http://kicad-pcb.org/download/windows/)
 
 ### mac
-インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.
-"KiCad main package"は，ライブラリをgithubに置いているもの.
-"KiCad extras"は，ライブラリをローカルに置くもの.
+インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.  
+"KiCad main package"は，ライブラリをgithubに置いているもの.  
+"KiCad extras"は，ライブラリをローカルに置くもの.  
 [http://kicad-pcb.org/download/osx/](http://kicad-pcb.org/download/osx/)
 
 ### ubuntu
-次のコマンドを実行します.  
+次のコマンドを実行します.
 
 
 ```.sh
@@ -96,7 +96,8 @@ $ sudo apt install kicad
 ```
 
 ## Kicadの設定
-コンポーネントライブラリは「〜.libファイル」で，そのファイル中に各コンポーネントが内包されています.  
+### コンポーネントライブラリ
+コンポーネントライブラリは「〜.libファイル」で，そのファイル中に各コンポーネントが内包されています  
 
 コンポーネントライブラリのパス  
 
@@ -104,7 +105,8 @@ $ sudo apt install kicad
 |:------------|:--------------|
 | res/lib/ArduinoNameCard.lib | res/lib |
 
-フットプリントライブラリは「〜.pretty」というフォルダで，各フットプリントのファイル「.kicad_mod」が入っています.  
+### フットプリントライブラリ
+フットプリントライブラリは「〜.pretty」というフォルダで，各フットプリントのファイル「.kicad_mod」が入っています  
 
 フットプリントのライブラリのパス
 
@@ -114,7 +116,7 @@ $ sudo apt install kicad
 
 ### kicadライブラリ
 
-基本的にチップ部品は, 次のサイズに統一しています.  
+基本的にチップ部品は, 次のサイズに統一しています
 
 |   EIA  |   JIS  |
 |:-------|:-------|
@@ -127,15 +129,15 @@ ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATME
 
 
 ## Arduino 名刺を製作する
-画像からPCBのフットプリントを作成します.  
+画像からPCBのフットプリントを作成します．
 
 ### 1.名刺上の空き領域のサイズに合わせて画像を作成する
 gimp で新規作成を行ないます. dpiは1000程度にします.  
 ![create_img.png](https://qiita-image-store.s3.amazonaws.com/0/70879/c26f6148-ad70-7a58-298a-abd3b1a02ae6.png)
 
-今回使用した画像は リポジトリの[./res/img/origin](https://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) に置いてあります.  
-これを利用してください.  
-各画像は, 次のことを書き込むことを想定しています.  
+今回使用した画像は リポジトリの[./res/img/origin](https://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) に置いてあります.
+これを利用してください.
+各画像は, 次のことを書き込むことを想定しています.
 - affiliation.png　-> 所属
 - name.png 　　-> 名前
 - address.png  -> 連絡先
@@ -148,7 +150,7 @@ gimp で新規作成を行ないます. dpiは1000程度にします.
 
 
 ### 3.黒地白字にします
-白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます.  
+白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます.   
 <img width="750" alt="invert_img.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/8dc54e44-9b2c-20da-3ac2-462678c88478.png">
 
 
@@ -177,7 +179,7 @@ Resolutionが1000dpi程度であることを確認します.
 Load Bitmap で　画像を読み込みます. 今回は, name.png を読み込みました.  
 Resolutionが1000dpi程度であることを確認します.  
 
-「Front solder mask」にチェックを入れます.  
+「Front solder mask」にチェックを入れます.
 「Export」でファイル(name_mask.kicad_mod)を出力します.  
 ![make_mask.png](https://qiita-image-store.s3.amazonaws.com/0/70879/4a054efd-e3ab-82bc-f2b4-89291123fbd7.png)
 
@@ -245,7 +247,7 @@ view -> 3D viewer で3Dビューアーで確認できます.
 
 ## 基板を発注する
 ### ガーバーデータの作成
-ガーバーの作成方法は, [★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方．](http://atmel.client.jp/fusionpcb.html)を参照してください.   
+ガーバーの作成方法は, [★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方．](http://atmel.client.jp/fusionpcb.html)を参照してください.    
 
 file -> plot でgerverの出力をします.  
 ![output_gerver.png](https://qiita-image-store.s3.amazonaws.com/0/70879/f62b4e4e-96c2-6fa3-0124-f90bb99dc70c.png)
@@ -299,7 +301,7 @@ Arduino互換部分
 
 ## ブートローダーの書き込み
 書き込みの方法は，optifixで書き込みます.  
-手順に関しましては, ["【Arduino 1.6.3】 Arduino UnoでATmega328P-PUにブートローダを書き込む"](http://ijmp320.hatenablog.jp/entry/2015/05/16/121922)を参照してください.  
+手順に関しましては, ["【Arduino 1.6.3】 Arduino UnoでATmega328P-PUにブートローダを書き込む"](http://ijmp320.hatenablog.jp/entry/2015/05/16/121922)を参照してください  
 
 当方では，["ICソケット"](http://www.aitendo.com/product/15796)を用いて，はんだ付けよりも先に書き込みを行っています.  
 
