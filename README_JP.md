@@ -9,7 +9,7 @@ masterは1枚のみであり，91×55mmの名刺サイズで作成していま�
 ![back_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/a7862201-bba9-eaf6-7349-21dd4562ff36.png)
 
 sample code の blink を書き込んだもの
-![blink.gif](https://qiita-image-store.s3.amazonaws.com/0/70879/a106e90a-53b5-c583-1349-2a9e9be3a7ac.gif)
+![blink.gif](./res/img/blink.gif)
 
 # 環境バージョン
 - KiCad 4.0.7

@@ -10,7 +10,7 @@ If you wanna create as panelized boards, see the [twoBoards branch](https://gith
 ![back_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/a7862201-bba9-eaf6-7349-21dd4562ff36.png)  
 
 This was written sample code(blink) with board.
-![blink.gif](https://qiita-image-store.s3.amazonaws.com/0/70879/a106e90a-53b5-c583-1349-2a9e9be3a7ac.gif)
+![blink.gif](./res/img/blink.gif)
 
 # Environment version
 - KiCad 4.0.7
