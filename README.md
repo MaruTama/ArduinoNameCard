@@ -102,8 +102,8 @@ And each component is included in the file.
 
 Container Nebraska Pass
 
-| Component library file | User defined search path |
-|: ------------ |: -------------- |
+| Component library files | User defind search path |
+|:------------|:--------------|
 | res/lib/ArduinoNameCard.lib | res/lib |
 
 ### Footprint Library
@@ -112,16 +112,16 @@ And contains the file ".kicad_mod" of each part footprint.
 
 Footprint library path  
 
-| Nickname | Pass |
-|: ------------ |: -------------- |
-| ArduinoNameCard | $ {KIPRJMOD} /res/lib/ArduinoNameCard.pretty |
+| nickname | path |
+|:------------|:--------------|
+| ArduinoNameCard | ${KIPRJMOD}/res/lib/ArduinoNameCard.pretty |
 
 ### kicad library
 
 Basically chip parts are unified to the following sizes.  
 
-| EIA | JIS |
-|: ------- |: ------- |
+|   EIA  |   JIS  |
+|:-------|:-------|
 | 0805 | 2012 |
 
 ["Quick KICAD Library Component Builder"](http://kicad.rohrbacher.net/quicklib.php)
@@ -142,9 +142,9 @@ The image used this time is put in [./res/img/origin](https://github.com/MaruTam
 Please use this.  
 
 Each image is supposed to write the following things.  
- - affiliation.png -> affiliation
- - name.png -> name
- - address.png -> contact information
+- affiliation.png -> affiliation
+- name.png -> name
+- address.png -> contact information
 
 
 ### 2. Enter pictures and characters in the picture
@@ -156,7 +156,7 @@ Binarize the image when if in case color image. -> 3
 ### 3. I will make a black character white character
 You need color turn when it's a white background and black character that  using gimp.  
 how to turn color.  
-menu -> colors -> Inverted.  
+menu -> "colors" -> "Inverted".  
 <img width="750" alt="invert_img.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/8dc54e44-9b2c-20da-3ac2-462678c88478.png">  
 
 
@@ -169,7 +169,7 @@ If it is copper, it will be like name.png and address.png.
 Start "bimmpa to component".  
 ![bmp2cmp.png](https://qiita-image-store.s3.amazonaws.com/0/70879/65068573-4805-e769-26ce-10b5beb110a0.png)  
 
-To create a silk -> to 5
+To create a silk -> to 5  
 To create a copper → to 6
 
 ### 5. Create with silk
@@ -177,7 +177,7 @@ Click "Load bitmap".
 As an example this time, I read name.png.  
 Check sure the resolution is about 1000 dpi.  
 
-Check "Front silk screen".
+Check "Front silk screen".  
 Click "Export" after to generate output the filename.  
 set name of output file as a name_silk.kicad_mod.  
 ![make_silk.png](https://qiita-image-store.s3.amazonaws.com/0/70879/4a3507a2-b9e4-fae1-f1d7-13616c5f261c.png)  
@@ -231,11 +231,11 @@ Right click on the existing footprint.
 <img width="750" alt="change_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/80ecb8f1-792e-281a-7acc-06617b44c2c6.png">
 
 
-Press the footprint list and select the saved footprint.
+Press the footprint list and select the saved footprint.  
 <img width="750" alt="list_of_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/2a4f079f-5dd2-b450-08eb-cd01f803d55f.png">
 
 
-Press "Apply" to change the flip print.
+Press "Apply" to change the flip print.  
 <img width = "751" alt = "apply_footprint.png" src = <img width="751" alt="apply_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/9cd79dde-6129-246e-c983-3e78caef68d9.png">
 
 
@@ -285,29 +285,29 @@ We will order the thickness of the board with **0.6 mm**.
 # Order parts
 serial conversion part
 
-| Parts | Number used for a board | Price at Akitsuki or DigKey |
-|: ------------ | |: -------------- |: ---------------- |
-| [FT232RL] (http://akizukidenshi.com/catalog/g/gI-01739/) | 1 | ¥ 400 |
-| [1 kΩ] (http://akizukidenshi.com/catalog/g/gR-11796/) | 2 | ¥ 100 |
-| [0.1 μF] (http://akizukidenshi.com/catalog/g/gP-00355/) | 2 | ¥ 150 |
-| [10 μF] (http://akizukidenshi.com/catalog/g/gP 07388/) | 1 | ¥ 150 |
-| [Red LED] (http://akizukidenshi.com/catalog/g/gI 06419/) | 1 | ¥ 150 |
-| [Green LED] (http://akizukidenshi.com/catalog/g/gI 06492/) | 1 | ¥ 150 |
+| Parts | Number used for a board | rice at Akitsuki or DigKey |
+|:------------|:--------------|:----------------|
+| [FT232RL](http://akizukidenshi.com/catalog/g/gI-01739/)  | 1 | ¥400 |
+| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
+| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 2 | ¥150 |
+| [10µF](http://akizukidenshi.com/catalog/g/gP-07388/) | 1 | ¥150 |
+| [Red LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
+| [Green LED](http://akizukidenshi.com/catalog/g/gI-06492/)| 1 | ¥150 |
 
 Arduino compatible part
 
-| Parts | Number used for 1 piece | Price at Akitsuki or DigKey |
-|: ------------ | |: -------------- |: ---------------- |
-| [ATMEGA 328 P-AU] (http://akizukidenshi.com/catalog/g/gI 04386/) | 1 | ¥ 230 |
-| [Crystal oscillator 16 MHz] (http://akizukidenshi.com/catalog/g/gP - 8671/) | 1 | ¥ 30 |
-| [10 kΩ] (http://akizukidenshi.com/catalog/g/gR-11797/) | 1 | ¥ 100 |
-| [1 kΩ] (http://akizukidenshi.com/catalog/g/gR-11796/) | 2 | ¥ 100 |
-| [330 Ω] (https://www.digikey.jp/product-detail/en/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥ 19 |
-| [0.1 μF] (http://akizukidenshi.com/catalog/g/gP-00355/) | 1 | ¥ 150 |
-| [22 pF] (https://www.digikey.jp/product-detail/en/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930) | 2 | ¥ 295 |
-| [Hughes] (http://akizukidenshi.com/catalog/g/gP-12636/) | 1 | ¥ 200 |
-| [Red LED] (http://akizukidenshi.com/catalog/g/gI 06419/) | 1 | ¥ 150 |
-| [Tact switch] (http://akizukidenshi.com/catalog/g/gP 06185/) | 1 | ¥ 100 |
+| Parts | Number used for a board | Price at Akitsuki or DigKey |
+|:------------|:--------------|:----------------|
+| [ATMEGA328P-AU](http://akizukidenshi.com/catalog/g/gI-04386/)  | 1 | ¥230 |
+| [Oscillator 16MHz](http://akizukidenshi.com/catalog/g/gP-08671/) | 1 | ¥30 |
+| [10kΩ](http://akizukidenshi.com/catalog/g/gR-11797/) | 1 | ¥100 |
+| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
+| [330Ω](https://www.digikey.jp/product-detail/ja/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥19 |
+| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 1 | ¥150 |
+|  [22pF](https://www.digikey.jp/product-detail/ja/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930)          | 2 | ¥295 |
+| [Hughes](http://akizukidenshi.com/catalog/g/gP-12636/)          | 1 | ¥200 |
+| [Red LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
+| [Tact switch](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
 
 ## Boot loader write
 Write method with optifix.  
@@ -318,14 +318,14 @@ flashing before soldering using ["IC socket"](http://www.aitendo.com/product/157
 
 Connect Arduino UNO and ATMEGA 328P-AU with the following combination.  
 
-| Arduino UNO | ATMEGA 328 P-AU | Location on business card (board) |
-|: ------------ | |: -------------- |: ---------------- |
-| D 10 (SS) | 29 (RESET) | RST |
-| D11 (MOSI) | 15 (MOSI) | D11 |
-| D 12 (MISO) | 16 (MISO) | D 12 |
-| D13 (SCK) | 17 (SCK) | D13 |
-| 5 V | 4 or 6 | 5 V |
-| GND | 3 or 5 | GND |
+| Arduino UNO | ATMEGA328P-AU | Location on card (board) |
+|:------------|:--------------|:----------------|
+| D10 (SS)    | 29 (RESET)    | RST |
+| D11 (MOSI)  | 15 (MOSI)     | D11 |
+| D12 (MISO)  | 16 (MISO)     | D12 |
+| D13 (SCK)   | 17 (SCK)      | D13 |
+| 5V          | 4 or 6        | 5V  |
+| GND         | 3 or 5        | GND |
 
 ## Soldering
 FT232RL is narrow between pins and it's difficult to solder.  
