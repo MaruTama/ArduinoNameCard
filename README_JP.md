@@ -258,7 +258,6 @@ file -> plot でgerverの出力をします.
 
 #### ガーバーデータのリネーム
 gerver データを ArduinoNameCard にリネームします.  
-![](./res/img/renamed.png)
 ![renamed.png](https://qiita-image-store.s3.amazonaws.com/0/70879/1b37cc4e-b98f-ae53-6754-9058868e9557.png)
 
 #### ガーバーデータのzipを作成する
@@ -326,7 +325,6 @@ FT232RLはピン間が狭く，はんだ付けするのが困難です.
 
 
 ### 2. 先にランドに，軽くはんだを付けておきます.
-![](./res/img/solder.png)
 ![solder.png](https://qiita-image-store.s3.amazonaws.com/0/70879/af93b95c-ae5f-cae4-baf0-749a5291f82b.png)
 
 
