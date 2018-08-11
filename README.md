@@ -1,5 +1,6 @@
-#Arduino Name(Business) Card
-[日本版 READE] (./README_JP.md)  
+# Arduino Name(Business) Card
+
+[日本版 READE](./README_JP.md)  
 This is a template with Arduino uno compatibility board.  
 It is only one master, it is created with a business card size of 91 x 55 mm.  
 
