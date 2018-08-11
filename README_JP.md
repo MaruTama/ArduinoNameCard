@@ -1,5 +1,5 @@
 # Arduino 名刺
-This is template what compatible board of Arduino uno.
+これはArduino uno 互換の名刺基板のテンプレートです.  
 masterは1枚のみであり，91×55mmの名刺サイズで作成しています.  
 
 もし, 2枚の面付け基板として作成したい場合は，
@@ -135,9 +135,9 @@ ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATME
 gimp で新規作成を行ないます. dpiは1000程度にします.  
 ![create_img.png](https://qiita-image-store.s3.amazonaws.com/0/70879/c26f6148-ad70-7a58-298a-abd3b1a02ae6.png)
 
-今回使用した画像は リポジトリの[./res/img/origin](https://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) に置いてあります.
-これを利用してください.
-各画像は, 次のことを書き込むことを想定しています.
+今回使用した画像は リポジトリの[./res/img/origin](https://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) に置いてあります.  
+これを利用してください.  
+各画像は, 次のことを書き込むことを想定しています.  
 - affiliation.png　-> 所属
 - name.png 　　-> 名前
 - address.png  -> 連絡先
@@ -167,7 +167,8 @@ bimmpa to componentを起動します.
 　銅箔剥き出しで作成する場合  --> 6へ  
 
 ### 5.シルクで作成します
-Load Bitmap で　画像を読み込みます. 例として今回は, name.png を読み込みました.  
+Load Bitmap で　画像を読み込みます.   
+例として今回は, name.png を読み込みました.  
 Resolutionが1000dpi程度であることを確認します.  
 
 「Front silk screen」にチェックを入れます.  

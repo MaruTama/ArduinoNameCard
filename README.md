@@ -1,334 +1,342 @@
-# Arduino Name Card
-[日本語版 README](./README_JP.md)  
-This is template what compatible board of Arduino uno.
-masterは1枚のみであり，91×55mmの名刺サイズで作成しています.  
+#Arduino Name(Business) Card
+[日本版 READE] (./README_JP.md)  
+This is a template with Arduino uno compatibility board.  
+It is only one master, it is created with a business card size of 91 x 55 mm.  
 
-もし, 2枚の面付け基板として作成したい場合は，
-[twoBoards](https://github.com/MaruTama/ArduinoNameCard/tree/twoBoards)ブランチを参照してください.
+If you wanna create as panelized boards, see the [twoBoards branch] (https://github.com/MaruTama/ArduinoNameCard/tree/twoBoards) .  
 
-![front_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/2e77843c-6e1c-10d9-aa70-b0e3f751a8f0.png)
-![back_of_card.png](https://qiita-image-store.s3.amazonaws.com/0/70879/a7862201-bba9-eaf6-7349-21dd4562ff36.png)
+! [front_of_card.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/2e77843c-6e1c-10d9-aa70-b0e3f751a8f0.png)  
+! [back_of_card.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/a7862201-bba9-eaf6-7349-21dd4562ff36.png)  
 
-sample code の blink を書き込んだもの
-![blink.gif](https://qiita-image-store.s3.amazonaws.com/0/70879/a106e90a-53b5-c583-1349-2a9e9be3a7ac.gif)
+This was written sample code(blink) with board.
+! [blink.gif] (https://qiita-image-store.s3.amazonaws.com/0/70879/a106e90a-53b5-c583-1349-2a9e9be3a7ac.gif)
 
-# 環境バージョン
-- KiCad 4.0.7
-- ArduinoIDE 1.8.2
-- GIMP 2.8
-- Ubuntu 16.04 and macOS High Sierra (当方)
+# Environment version
+ - KiCad 4.0.7
+ - ArduinoIDE 1.8.2
+ - GIMP 2.8
+ - Ubuntu 16.04 and macOS High Sierra (my environment)
 
-基本的に ArduinoIDE と KiCad, GIMP はクロスプラットフォームで OS 依存しないので， OS は問いません.
+Basically, ArduinoIDE, KiCad, GIMP are cross-platform and do not depend on OS.  
 
-# 環境構築方法
-## ArduinoIDEのインストール
+# Environment construction method
+## Installation of Arduino IDE
 ### windows
-直接公式からダウンロードのダウンロードに時間がかかることがあったので,
-Chocolateyでインストールするのがオススメです.
+It is recommended to install with Chocolatey.  
+because since installer took time to download from the official site.  
 
-Chocolateyのインストールは,
-["Chocolateyを使った環境構築の時のメモ"](https://qiita.com/konta220/items/95b40b4647a737cb51aa)
-を参照してください.
+Installation of Chocolatey
+["Chocolateyを使った環境構築の時のメモ"] (https://qiita.com/konta220/items/95b40b4647a737cb51aa)
+please refer above.  
 
-管理者権限でcmd or PowerShellを開き, ArduinoIDEのインストールします.
+To open cmd or PowerShell with administrator privileges.  
 
 ```
-> choco upgrade chocolatey
-> choco install arduino
+> Chocolate Upgrade Chocolate
+> Chocolate installation arduino
 ```
 
-2回質問が来るのですが "Yes" で構いません.
-![win_choco.png](https://qiita-image-store.s3.amazonaws.com/0/70879/615bbdf1-cf88-8f4c-6558-ce8a967dd668.png)
+It is OK to response "Yes" that the question comes twice.  
+! [win_choco.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/615bbdf1-cf88-8f4c-6558-ce8a967dd668.png)
 
-ドライバーをインストールするか数回問われるので, すべてインストールします.
-![win_driver.png](https://qiita-image-store.s3.amazonaws.com/0/70879/f9474547-8c4a-2e98-b71c-518dcd02a14a.png)
+Install the All drivers for Arduino.  
+! [win_driver.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/f9474547-8c4a-2e98-b71c-518dcd02a14a.png)
 
-### mac
-macはbrewでインストール
+### Mac
+Mac is using brew to install Arduino IDE
 
-```.sh
+```
 brew cask install arduino
 ```
 
 ### Ubuntu
-["ここ"](https://www.arduino.cc/en/Main/Software)から，最新のlinux 32 or 64.zipをダウンロードします.    
-ダウンロードしたファイルが arduino-1.8.2-linux64.tar.xz の時のインストール方法は以下のとおりです.
+["Here"] (https://www.arduino.cc/en/Main/Software), download the latest Linux 32 or 64. zip.  
+The installation method when downloaded file is arduino-1.8.2-linux64.tar.xz.  
 
-```.sh
+```
 $ sudo tar -Jxvf arduino-1.8.2-linux64.tar.xz -C /usr/share
 $ cd /usr/share
 $ sudo mv arduino-1.8.2/ arduino
-# シンボリックリンクを作成
+# Create a symbolic link.
 $ sudo ln -s /usr/share/arduino/arduino /usr/local/bin/arduino
 # 実行
 $ arduino
-# もしポートが使えないときは管理者権限で実行する
+# Run it with administrator privileges when if you can not use the port.
 $ sudo arduino
 ```
 
-
-## Kicadのインストール
+## Installation Kicad
 ### windows
-#### choco でインストール
-chocoでのインストールする場合は次のコマンドを実行します
+#### Install with choco
+To install with choco, execute the following commands.  
 
-```.sh
+```
 > choco upgrade chocolatey
 > choco install kicad
 ```
-#### インストーラーでインストール
-インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.  
+
+### Install with Installer
+If you are installing using the installer, download the installer from the official website below.  
 [http://kicad-pcb.org/download/windows/](http://kicad-pcb.org/download/windows/)
 
-### mac
-インストーラーを用いてインストールする場合は，下記の公式サイトからインストーラーをダウンロードします.  
-"KiCad main package"は，ライブラリをgithubに置いているもの.  
-"KiCad extras"は，ライブラリをローカルに置くもの.  
+### Mac
+If you are installing using the installer, download the installer from the official website below.  
+"KiCad main package" is what component files puts the library in github.  
+"KiCad extras" is what the component files puts the library in local directory.  
 [http://kicad-pcb.org/download/osx/](http://kicad-pcb.org/download/osx/)
 
 ### ubuntu
-次のコマンドを実行します.
+Execute the following commands.  
 
-
-```.sh
+```
 $ sudo add-apt-repository --yes ppa:js-reynaud/kicad-4
 $ sudo apt update
 $ sudo apt install kicad
 ```
 
-## Kicadの設定
-### コンポーネントライブラリ
-コンポーネントライブラリは「〜.libファイル」で，そのファイル中に各コンポーネントが内包されています  
+## Setting of Kicad
+### Component library
+The component library is "~. Lib file".  
+And each component is included in the file.  
 
-コンポーネントライブラリのパス  
+Container Nebraska Pass
 
-| Component library files | User defind search path |
-|:------------|:--------------|
+| Component library file | User defined search path |
+|: ------------ |: -------------- |
 | res/lib/ArduinoNameCard.lib | res/lib |
 
-### フットプリントライブラリ
-フットプリントライブラリは「〜.pretty」というフォルダで，各フットプリントのファイル「.kicad_mod」が入っています  
+### Footprint Library
+The footprint library is a folder as a "~.Pretty".  
+And contains the file ".kicad_mod" of each part footprint.  
 
-フットプリントのライブラリのパス
+Footprint library path  
 
-| nickname | path |
-|:------------|:--------------|
-| ArduinoNameCard | ${KIPRJMOD}/res/lib/ArduinoNameCard.pretty |
+| Nickname | Pass |
+|: ------------ |: -------------- |
+| ArduinoNameCard | $ {KIPRJMOD} /res/lib/ArduinoNameCard.pretty |
 
-### kicadライブラリ
+### kicad library
 
-基本的にチップ部品は, 次のサイズに統一しています
+Basically chip parts are unified to the following sizes.  
 
-|   EIA  |   JIS  |
-|:-------|:-------|
+| EIA | JIS |
+|: ------- |: ------- |
 | 0805 | 2012 |
 
-FT232RL.libに関しては,
-["Quick KICAD Library Component Builder"](http://kicad.rohrbacher.net/quicklib.php)というサービスにて作成しました.  
+["Quick KICAD Library Component Builder"] (http://kicad.rohrbacher.net/quicklib.php)
+FT232RL.lib was created with above that using website.  
 
-ATMEGA328-AUのライブラリは, ["ここ"](https://www.snapeda.com/parts/ATMEGA328-AU/Atmel/view-part/)からダウンロードしました.  
-
-
-## Arduino 名刺を製作する
-画像からPCBのフットプリントを作成します．
-
-### 1.名刺上の空き領域のサイズに合わせて画像を作成する
-gimp で新規作成を行ないます. dpiは1000程度にします.  
-![create_img.png](https://qiita-image-store.s3.amazonaws.com/0/70879/c26f6148-ad70-7a58-298a-abd3b1a02ae6.png)
-
-今回使用した画像は リポジトリの[./res/img/origin](https://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) に置いてあります.
-これを利用してください.
-各画像は, 次のことを書き込むことを想定しています.
-- affiliation.png　-> 所属
-- name.png 　　-> 名前
-- address.png  -> 連絡先
+The ATMEGA 328-AU library was downloaded from ["here"] (https://www.snapeda.com/parts/ATMEGA328-AU/Atmel/view-part/)  
 
 
-### 2.画像に図や文字を入力します
-例として, name.png に名前を書き込みます.  
-もし, カラーの場合は画像を二値化します.  
-![input_fig.png](https://qiita-image-store.s3.amazonaws.com/0/70879/bc86a429-c0c8-ee30-3043-075d519072a5.png)
+# # Build Arduino Name cards
+Create a PCB footprint from the image.
+
+### 1. Create an image according to the size of the free space on the Name Card
+Create new image that using gimp.
+Set about 1000dpi.  
+! [create_img.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/c26f6148-ad70-7a58-298a-abd3b1a02ae6.png)
+
+The image used this time is put in [./res/img/origin] (http://github.com/MaruTama/ArduinoNameCard/tree/master/res/img/origin) of the repository.
+Please use this.  
+
+Each image is supposed to write the following things.  
+ - affiliation.png -> affiliation
+ - name.png -> name
+ - address.png -> contact information
 
 
-### 3.黒地白字にします
-白地黒字のときには下図ようにgimpでは「階調の反転」で黒地白字にできます.   
-<img width="750" alt="invert_img.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/8dc54e44-9b2c-20da-3ac2-462678c88478.png">
+### 2. Enter pictures and characters in the picture
+As an example, let's write the name in name.png.  
+Binarize the image when if in case color image. -> 3  
+! [input_fig.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/bc86a429-c0c8-ee30-3043-075d519072a5.png)
 
 
-### 4.フットプリントを作成します
-基板に載せる情報について, **シルク** か **銅箔の剥き出し** か選ぶ事ができます.  
-シルクで載せた場合は下図の　affiliation.png のようになります.  
-銅箔の剥き出しにした場合は　name.png　と address.png のようになります.  
-![using_images.png](https://qiita-image-store.s3.amazonaws.com/0/70879/90b74999-e47b-e2a3-3fe4-81d65c4309a6.png)
-
-bimmpa to componentを起動します.  
-![bmp2cmp.png](https://qiita-image-store.s3.amazonaws.com/0/70879/65068573-4805-e769-26ce-10b5beb110a0.png)
-
-　シルクを作成する場合 　　　--> 5へ  
-　銅箔剥き出しで作成する場合  --> 6へ  
-
-### 5.シルクで作成します
-Load Bitmap で　画像を読み込みます. 例として今回は, name.png を読み込みました.  
-Resolutionが1000dpi程度であることを確認します.  
-
-「Front silk screen」にチェックを入れます.  
-「Export」でファイル(name_silk.kicad_mod)を出力します.  
-![make_silk.png](https://qiita-image-store.s3.amazonaws.com/0/70879/4a3507a2-b9e4-fae1-f1d7-13616c5f261c.png)
+### 3. I will make a black character white character
+You need color turn when it's a white background and black character that  using gimp.  
+how to turn color.  
+menu -> colors -> Inverted.  
+<img width = "750" alt = "invert_img.png" src = "https://qiita-image-store.s3.amazonaws.com/0/70879/8dc54e44-9b2c-20da-3ac2-462678c88478.png">
 
 
-### 6.銅箔で作成します
-Load Bitmap で　画像を読み込みます. 今回は, name.png を読み込みました.  
-Resolutionが1000dpi程度であることを確認します.  
+### 4. Create a footprint
+You can choose **silk** or **copper** what information to be placed on the board.  
+If you put it in silk it will look like affiliation.png in the figure below.  
+If it is copper, it will be like name.png and address.png.  
+! [using_images.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/90b74999-e47b-e2a3-3fe4-81d65c4309a6.png)
 
-「Front solder mask」にチェックを入れます.
-「Export」でファイル(name_mask.kicad_mod)を出力します.  
-![make_mask.png](https://qiita-image-store.s3.amazonaws.com/0/70879/4a054efd-e3ab-82bc-f2b4-89291123fbd7.png)
+Start "bimmpa to component".  
+! [bmp2cmp.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/65068573-4805-e769-26ce-10b5beb110a0.png)
+
+To create a silk -> to 5
+To create a copper → to 6
+
+### 5. Create with silk
+Click "Load bitmap".  
+As an example this time, I read name.png.  
+Check sure the resolution is about 1000 dpi.  
+
+Check "Front silk screen".
+Click "Export" after to generate output the filename.  
+set name of output file as a name_silk.kicad_mod.  
+! [make_silk.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/4a3507a2-b9e4-fae1-f1d7-13616c5f261c.png)
 
 
-出力したname_mask.kicad_modのフットプリントを加工します.  
-具体的にはレジストマスクと銅箔のフットプリントにします.  
+### 6. Create with copper
+Click "Load bitmap".  
+As an example this time, I read name.png.  
+Check sure the resolution is about 1000 dpi.  
 
-スクリプトはpythonで記述されています.  
-リポジトリの [./python/main.py](https://github.com/MaruTama/ArduinoNameCard/blob/master/python/main.py) にスクリプトが置いてあります.  
-次のコマンドを実行するとフットプリントが作成されます.  
+Check "Front solder mask".  
+Click "Export" after to generate output the filename.  
+set name of output file as a name_mask.kicad_mod.   
+! [make_mask.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/4a054efd-e3ab-82bc-f2b4-89291123fbd7.png)
 
-```.sh
-$ cd 本プロジェクトのルート
+
+Process the output footprint of name_mask.kicad_mod.  
+In we will make that using the resist mask and the copper.  
+
+The script is written in Python.  
+A script is placed in [./python/main.py] (http://github.com/MaruTama/ArduinoNameCard/blob/master/python/main.py) in the repository.  
+Execute the following command to create a footprint.  
+
+```
+$ cd "Route of this project"
 $ python python/main.py  res/lib/ArduinoNameCard.pretty/name_mask.kicad_mod
 ```
-すると, name_mask_and_cu.kicad_mod が生成されます.  
 
-(もし，生成されない場合は，name_cu.kicad_modを開き "fp_ploy" 以降に含まれる項目をコピーしておき，"F.Mask" を "F.Cu"に置換後， コピーした内容を追記してname_mask_and_cu.kicad_modとして保存してください.)  
+Then name_mask_and_cu.kicad_mod is generated.  
 
-### 7.フットプリントをライブラリに追加する
-作業ライブラリとしてArduinoNameCardを選択します.  
-![import0.png](https://qiita-image-store.s3.amazonaws.com/0/70879/e33843f0-945c-74dc-dcdd-0575cb54ed96.png)
+(If it is not generated, open name_cu.kicad_mod, copy the items included after "fp_ploy", replace "F.Mask" with "F.Cu", append the copied contents name_mask_and_cu. Please save it as kicad_mod.)  
 
-先ほど，出力したファイルを読み込みます.  
-![import1.png](https://qiita-image-store.s3.amazonaws.com/0/70879/d77af3e5-01ed-49b5-6efe-31194b484fa1.png)
+### 7. Add a footprint to the library
+Select ArduinoNameCard as the working library.  
+! [import 0. png] (https://qiita-image-store.s3.amazonaws.com/0/70879/e33843f0-945c-74dc-dcdd- 0575cb54ed96.png)
 
-
-ライブラリにコンポーネントを保存する.  
-シルクで作成している場合は，name_silkとして保存します.  
-銅箔で作成している場合は, name_mask_and_cuとして保存します.  
-![import2.png](https://qiita-image-store.s3.amazonaws.com/0/70879/456f297f-22bf-2a20-fb43-9700d20cd009.png)
+Read the output file.  
+! [import1.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/d77af3e5-01ed-49b5-6efe-31194b484fa1.png)
 
 
-### 8.基板上に展開します
-すでにあるフットプリントを置換するのが一番楽です.  
-置換したいフットプリント上で右クリックし,
-フットプリントの交換 -> フットプリント G*** でウィンドウが開きます.  
-<img width="750" alt="change_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/80ecb8f1-792e-281a-7acc-06617b44c2c6.png">
+Save the component in the library.  
+If you are creating with silk, save it as "name_silk.kicad_mod".  
+If you are using copper foil, save it as "name_mask_and_cu.kicad_mod".  
+! [import2.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/456f297f-22bf-2a20-fb43-9700d20cd009.png)
 
 
-フットプリントのリストを押して、保存したフットプリントを選択します.  
-<img width="750" alt="list_of_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/2a4f079f-5dd2-b450-08eb-cd01f803d55f.png">
+### 8. Installation on board
+It's easiest to replace the existing footprint.  
+Right click on the existing footprint.  
+"Footprint exchange" -> "Footprint G *** ",  after opens the window.  
+<img width = "750" alt = "change_footprint.png" src = "https://qiita-image-store.s3.amazonaws.com/0/70879/80ecb8f1-792e-281a-7acc-06617b44c2c6.png">
 
 
-適用を押すとフットプリントが変更されます.  
-<img width="751" alt="apply_footprint.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/9cd79dde-6129-246e-c983-3e78caef68d9.png">
+Press the footprint list and select the saved footprint.
+<img width = "750" alt = "list_of_footprint.png" src = "https://qiita-image-store.s3.amazonaws.com/0/70879/2a4f079f-5dd2-b450-08eb-cd01f803d55f.png">
 
 
-### 9.GNDのベタ塗りをします
-四角い場所をクリックします.  
-![beta_GND.png](https://qiita-image-store.s3.amazonaws.com/0/70879/c9279343-2d01-350f-9734-212fb76995ee.png)
-
-基板上の任意の箇所で右クリックすると次のようなメニューが出てきます.  
-[全てのゾーンを塗りつぶす]を選択します.  
-<img width="296" alt="スクリーンショット 2018-08-08 14.23.31.png" src="https://qiita-image-store.s3.amazonaws.com/0/70879/079f5a61-6b1d-01ba-4c8f-f9c8af47bd50.png">
-
-これでベタ塗り完了です.  
-
-### 10.確認
-view -> 3D viewer で3Dビューアーで確認できます.  
-![3Dviewer.png](https://qiita-image-store.s3.amazonaws.com/0/70879/d6ffde87-615c-0c04-0f84-eb694d96bf51.png)
+Press "Apply" to change the flip print.
+<img width = "751" alt = "apply_footprint.png" src = "https://qiita-image-store.s3.amazonaws.com/0/70879/9cd79dde-6129-246e-c983-3e78caef68d9.png">
 
 
+### 9. The solid filling of GND.
+Click a red square place.  
+! [beta_GND.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/c9279343-2d01-350f-9734-212fb76995ee.png)
+
+Right click anywhere on the board and the following menu will appear.  
+Select "Fill all zones" .  
+<img width = "296" alt = "Screening shot 2018-08-08 14.23.31.png" src = "https://qiita-image-store.s3.amazonaws.com/0/70879/079f5a61-6b1d- 01ba-4c8f-f9c8af47bd50.png ">
+
+This completes filling with solid of GND.
+
+### 10. Confirmation
+You can check it with 3D viewer in Menu -> "View" -> "3D viewer".  
+! [3Dviewer.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/d6ffde87-615c-0c04-0f84-eb694d96bf51.png)
 
 
-## 基板を発注する
-### ガーバーデータの作成
-ガーバーの作成方法は, [★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方．](http://atmel.client.jp/fusionpcb.html)を参照してください.    
 
-file -> plot でgerverの出力をします.  
-![output_gerver.png](https://qiita-image-store.s3.amazonaws.com/0/70879/f62b4e4e-96c2-6fa3-0124-f90bb99dc70c.png)
+# Order the board
+### Creating Gerber data
+How to create Gerber is that see this refer.  
+[ ★kicad (Mac OSX Version: 4.0.5 release build)版でFusionPCB用ガーバーデータの作り方] (http://atmel.client.jp/fusionpcb.html).
 
-ドリルデータを出力します.  
-![output_drill.png](https://qiita-image-store.s3.amazonaws.com/0/70879/3dbb45bf-b820-029a-40df-337538d40f19.png)
+Output gerver with "Menu" -> "file" -> "plot" .  
+! [output_gerver.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/f62b4e4e-96c2-6fa3-0124-f90bb99dc70c.png)
 
-#### ガーバーデータのリネーム
-gerver データを ArduinoNameCard にリネームします.  
-![](./res/img/renamed.png)
-![renamed.png](https://qiita-image-store.s3.amazonaws.com/0/70879/1b37cc4e-b98f-ae53-6754-9058868e9557.png)
+And output drill data.  
+! [output_drill.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/3dbb45bf-b820-029a-40df-337538d40f19.png)
 
-#### ガーバーデータのzipを作成する
-exportフォルダごと圧縮して, zipにまとめます.  
-zipのファイル名は,ArduinoNameCardにリネームします.  
+#### Rename Gerber datas
+Rename gerver data to ArduinoNameCard.  
+! [renamed.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/1b37cc4e-b98f-ae53-6754-9058868e9557.png)
 
-### 基板の発注設定
-seeed fusion のプレビューで確認できます.  
-好きな色を選択します.  
-![top_green.png](https://qiita-image-store.s3.amazonaws.com/0/70879/f0c6a12e-d749-1a2a-b240-c7e09d265e8c.png)
-![bottom_green.png](https://qiita-image-store.s3.amazonaws.com/0/70879/515d2717-04fa-5287-5293-28c4e0bfae79.png)
+#### Create a zip of Gerber data
+Export Compress every folder and put it in zip.  
+Rename zip file name to ArduinoNameCard.  
 
-基板の厚みは**0.6mm**で注文します.  
+### Placement order of board
+You can check it by preview of seeed fusion.  
+Select your favorite color.  
+! [top_green.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/f0c6a12e-d749-1a2a-b240-c7e09d265e8c.png)  
+! [bottom_green.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/515d2717-04fa-5287-5293-28c4e0bfae79.png)
 
-## 部品を発注する
-serial変換部分
+We will order the thickness of the board with **0.6 mm**.  
 
-| 部品 | １枚で使用する個数 | 秋月またはDigKeyでの値段 |
-|:------------|:--------------|:----------------|
-| [FT232RL](http://akizukidenshi.com/catalog/g/gI-01739/)  | 1 | ¥400 |
-| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
-| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 2 | ¥150 |
-| [10µF](http://akizukidenshi.com/catalog/g/gP-07388/) | 1 | ¥150 |
-| [赤LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
-| [緑LED](http://akizukidenshi.com/catalog/g/gI-06492/)| 1 | ¥150 |
+# Order parts
+serial conversion part
 
-Arduino互換部分
+| Parts | Number used for a board | Price at Akitsuki or DigKey |
+|: ------------ | |: -------------- |: ---------------- |
+| [FT232RL] (http://akizukidenshi.com/catalog/g/gI-01739/) | 1 | ¥ 400 |
+| [1 kΩ] (http://akizukidenshi.com/catalog/g/gR-11796/) | 2 | ¥ 100 |
+| [0.1 μF] (http://akizukidenshi.com/catalog/g/gP-00355/) | 2 | ¥ 150 |
+| [10 μF] (http://akizukidenshi.com/catalog/g/gP 07388/) | 1 | ¥ 150 |
+| [Red LED] (http://akizukidenshi.com/catalog/g/gI 06419/) | 1 | ¥ 150 |
+| [Green LED] (http://akizukidenshi.com/catalog/g/gI 06492/) | 1 | ¥ 150 |
 
-| 部品 | １枚で使用する個数 | 秋月またはDigKeyでの値段 |
-|:------------|:--------------|:----------------|
-| [ATMEGA328P-AU](http://akizukidenshi.com/catalog/g/gI-04386/)  | 1 | ¥230 |
-| [水晶発振子 16MHz](http://akizukidenshi.com/catalog/g/gP-08671/) | 1 | ¥30 |
-| [10kΩ](http://akizukidenshi.com/catalog/g/gR-11797/) | 1 | ¥100 |
-| [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
-| [330Ω](https://www.digikey.jp/product-detail/ja/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥19 |
-| [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 1 | ¥150 |
-|  [22pF](https://www.digikey.jp/product-detail/ja/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930)          | 2 | ¥295 |
-| [ヒューズ](http://akizukidenshi.com/catalog/g/gP-12636/)          | 1 | ¥200 |
-| [赤LED](http://akizukidenshi.com/catalog/g/gI-06419/)| 1 | ¥150 |
-| [タクトスイッチ](http://akizukidenshi.com/catalog/g/gP-06185/) | 1 | ¥100 |
+Arduino compatible part
 
-## ブートローダーの書き込み
-書き込みの方法は，optifixで書き込みます.  
-手順に関しましては, ["【Arduino 1.6.3】 Arduino UnoでATmega328P-PUにブートローダを書き込む"](http://ijmp320.hatenablog.jp/entry/2015/05/16/121922)を参照してください  
+| Parts | Number used for 1 piece | Price at Akitsuki or DigKey |
+|: ------------ | |: -------------- |: ---------------- |
+| [ATMEGA 328 P-AU] (http://akizukidenshi.com/catalog/g/gI 04386/) | 1 | ¥ 230 |
+| [Crystal oscillator 16 MHz] (http://akizukidenshi.com/catalog/g/gP - 8671/) | 1 | ¥ 30 |
+| [10 kΩ] (http://akizukidenshi.com/catalog/g/gR-11797/) | 1 | ¥ 100 |
+| [1 kΩ] (http://akizukidenshi.com/catalog/g/gR-11796/) | 2 | ¥ 100 |
+| [330 Ω] (https://www.digikey.jp/product-detail/en/stackpole-electronics-inc/RMCF0805JT330R/RMCF0805JT330RCT-ND/1942547) | 1 | ¥ 19 |
+| [0.1 μF] (http://akizukidenshi.com/catalog/g/gP-00355/) | 1 | ¥ 150 |
+| [22 pF] (https://www.digikey.jp/product-detail/en/murata-electronics-north-america/GRM21A5C2E220JW01D/490-5534-1-ND/2334930) | 2 | ¥ 295 |
+| [Hughes] (http://akizukidenshi.com/catalog/g/gP-12636/) | 1 | ¥ 200 |
+| [Red LED] (http://akizukidenshi.com/catalog/g/gI 06419/) | 1 | ¥ 150 |
+| [Tact switch] (http://akizukidenshi.com/catalog/g/gP 06185/) | 1 | ¥ 100 |
 
-当方では，["ICソケット"](http://www.aitendo.com/product/15796)を用いて，はんだ付けよりも先に書き込みを行っています.  
+## Boot loader write
+Write method with optifix.  
+For the procedure,
+please refer to [【Arduino 1.6.3】 Arduino UnoでATmega328P-PUにブートローダを書き込む] (http://ijmp320.hatenablog.jp/entry/2015/05/16/121922)  
 
-次の組み合わせでArduinoUNOとATMEGA328P-AUを接続します.  
+flashing before soldering using ["IC socket"] (http://www.aitendo.com/product/15796).  
 
-| Arduino UNO | ATMEGA328P-AU | 名刺（基板）での位置 |
-|:------------|:--------------|:----------------|
-| D10 (SS)    | 29 (RESET)    | RST |
-| D11 (MOSI)  | 15 (MOSI)     | D11 |
-| D12 (MISO)  | 16 (MISO)     | D12 |
-| D13 (SCK)   | 17 (SCK)      | D13 |
-| 5V          | 4 or 6        | 5V  |
-| GND         | 3 or 5        | GND |
+Connect Arduino UNO and ATMEGA 328P-AU with the following combination.  
 
-## はんだ付け
-FT232RLはピン間が狭く，はんだ付けするのが困難です.  
-普通にはんだ付けもできますが，次のような手順で行うことを推奨します.  
+| Arduino UNO | ATMEGA 328 P-AU | Location on business card (board) |
+|: ------------ | |: -------------- |: ---------------- |
+| D 10 (SS) | 29 (RESET) | RST |
+| D11 (MOSI) | 15 (MOSI) | D11 |
+| D 12 (MISO) | 16 (MISO) | D 12 |
+| D13 (SCK) | 17 (SCK) | D13 |
+| 5 V | 4 or 6 | 5 V |
+| GND | 3 or 5 | GND |
 
-### 1. フラックスを多めに塗ります.
-![flux.png](https://qiita-image-store.s3.amazonaws.com/0/70879/49a19f48-6b89-5897-c7ff-14c4fc9f998b.png)
+## Soldering
+FT232RL is narrow between pins and it's difficult to solder.  
+Although soldering can be done normally, I recommend that you follow the procedure below.  
 
-
-### 2. 先にランドに，軽くはんだを付けておきます.
-![](./res/img/solder.png)
-![solder.png](https://qiita-image-store.s3.amazonaws.com/0/70879/af93b95c-ae5f-cae4-baf0-749a5291f82b.png)
+### 1. Apply more flux.
+! [flux.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/49a19f48-6b89-5897-c7ff-14c4fc9f998b.png)
 
 
-### 3. 足を揃え，上からこてを当てて固定します.
-![put_on_ic.png](https://qiita-image-store.s3.amazonaws.com/0/70879/28772e8e-a681-0a8a-8cbb-99e89f5489c5.png)
+### 2. Add a light solder to the land first.
+! [solder.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/af93b95c-ae5f-cae4-baf0-749a5291f82b.png)
+
+
+### 3. Align the feet, fix it by applying a soldering iron from the top.
+! [put_on_ic.png] (https://qiita-image-store.s3.amazonaws.com/0/70879/28772e8e-a681-0a8a-8cbb-99e89f5489c5.png)
