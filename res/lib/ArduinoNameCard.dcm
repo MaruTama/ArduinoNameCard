@@ -1,3 +1,8 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP FT230XS
+D USB to serial UART interface
+F https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf
+$ENDCMP
+#
 #End Doc Library

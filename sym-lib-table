@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name ArduinoNameCard)(type Legacy)(uri ${KIPRJMOD}/res/lib/ArduinoNameCard.lib)(options "")(descr ""))
+  (lib (name ArduinoNameCard-rescue)(type Legacy)(uri ${KIPRJMOD}/ArduinoNameCard-rescue.lib)(options "")(descr ""))
+)
