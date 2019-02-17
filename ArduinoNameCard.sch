@@ -117,10 +117,10 @@ F 3 "" H 2250 5500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L ArduinoNameCard-rescue:C- C3
+L ArduinoNameCard-rescue:C- C1
 U 1 1 598D8407
 P 1950 5500
-F 0 "C3" H 1975 5600 50  0000 L CNN
+F 0 "C1" H 1975 5600 50  0000 L CNN
 F 1 "0.1u" H 1975 5400 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 1988 5350 50  0001 C CNN
 F 3 "" H 1950 5500 50  0001 C CNN
@@ -128,10 +128,10 @@ F 3 "" H 1950 5500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C1
+L Device:C C2
 U 1 1 598D853B
 P 2650 5500
-F 0 "C1" H 2675 5600 50  0000 L CNN
+F 0 "C2" H 2675 5600 50  0000 L CNN
 F 1 "0.1u" H 2675 5400 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 2688 5350 50  0001 C CNN
 F 3 "" H 2650 5500 50  0001 C CNN
@@ -183,10 +183,10 @@ F 3 "" H 6900 3250 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C C5
+L Device:C C3
 U 1 1 598DE610
 P 6900 3650
-F 0 "C5" H 6925 3750 50  0000 L CNN
+F 0 "C3" H 6925 3750 50  0000 L CNN
 F 1 "22p" H 6925 3550 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6938 3500 50  0001 C CNN
 F 3 "" H 6900 3650 50  0001 C CNN
@@ -515,12 +515,10 @@ F 3 "" H 2050 2200 50  0001 C CNN
 	1    2050 2200
 	1    0    0    -1  
 $EndComp
-Text GLabel 2150 2500 2    60   Output ~ 0
+Text GLabel 2050 2500 3    60   Output ~ 0
 5V
 Wire Wire Line
 	2050 1950 2050 2050
-Wire Wire Line
-	2150 2500 2050 2500
 Wire Wire Line
 	2050 2500 2050 2350
 Text GLabel 4750 2500 0    60   Input ~ 0
@@ -562,12 +560,12 @@ Wire Wire Line
 Wire Wire Line
 	6950 2650 7550 2650
 $Comp
-L Connector:USB_B_Micro J?
+L Connector:USB_B_Micro J1
 U 1 1 5C66CF79
 P 3050 2200
-F 0 "J?" H 3105 2667 50  0000 C CNN
+F 0 "J1" H 3105 2667 50  0000 C CNN
 F 1 "USB_B_Micro" H 3105 2576 50  0000 C CNN
-F 2 "" H 3200 2150 50  0001 C CNN
+F 2 "ArduinoNameCard:namecard_microB" H 3200 2150 50  0001 C CNN
 F 3 "~" H 3200 2150 50  0001 C CNN
 	1    3050 2200
 	1    0    0    -1  
@@ -577,12 +575,12 @@ NoConn ~ 3350 2400
 Wire Wire Line
 	3050 2600 3050 2700
 $Comp
-L ArduinoNameCard:FT230XS U?
+L ArduinoNameCard:FT230XS U1
 U 1 1 5C6C3281
 P 3550 4850
-F 0 "U?" H 3550 4950 50  0000 C CNN
+F 0 "U1" H 3550 4950 50  0000 C CNN
 F 1 "FT230XS" H 3550 4850 50  0000 C CNN
-F 2 "" H 3550 4550 50  0001 C CNN
+F 2 "Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm" H 3550 4550 50  0001 C CNN
 F 3 "https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf" H 3550 4550 50  0001 C CNN
 	1    3550 4850
 	1    0    0    -1  
@@ -598,10 +596,10 @@ Wire Wire Line
 Wire Wire Line
 	2550 4650 2450 4650
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0101
 U 1 1 5C75530E
 P 3450 5800
-F 0 "#PWR?" H 3450 5550 50  0001 C CNN
+F 0 "#PWR0101" H 3450 5550 50  0001 C CNN
 F 1 "GND" H 3455 5627 50  0000 C CNN
 F 2 "" H 3450 5800 50  0001 C CNN
 F 3 "" H 3450 5800 50  0001 C CNN
@@ -650,10 +648,10 @@ Wire Wire Line
 	2350 4450 2650 4450
 Connection ~ 2650 4450
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0102
 U 1 1 5C83D5A5
 P 2650 5800
-F 0 "#PWR?" H 2650 5550 50  0001 C CNN
+F 0 "#PWR0102" H 2650 5550 50  0001 C CNN
 F 1 "GND" H 2655 5627 50  0000 C CNN
 F 2 "" H 2650 5800 50  0001 C CNN
 F 3 "" H 2650 5800 50  0001 C CNN
@@ -701,12 +699,12 @@ Wire Wire Line
 Wire Wire Line
 	4500 4350 4700 4350
 $Comp
-L Device:R R?
+L Device:R R2
 U 1 1 5C9978E4
 P 3650 2400
-F 0 "R?" V 3750 2400 50  0000 C CNN
+F 0 "R2" V 3750 2400 50  0000 C CNN
 F 1 "27" V 3650 2400 50  0000 C CNN
-F 2 "" V 3580 2400 50  0001 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 3580 2400 50  0001 C CNN
 F 3 "~" H 3650 2400 50  0001 C CNN
 	1    3650 2400
 	0    -1   1    0   

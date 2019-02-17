@@ -13,7 +13,7 @@ This was written sample code(blink) with board.
 ![blink.gif](./res/img/blink.gif)
 
 # Environment version
-- KiCad 4.0.7
+- KiCad 5.0.0
 - ArduinoIDE 1.8.2
 - GIMP 2.8
 - Ubuntu 16.04 and macOS High Sierra (my environment)
@@ -287,7 +287,7 @@ serial conversion part
 
 | Parts | Number used for a board | rice at Akitsuki or DigKey |
 |:------------|:--------------|:----------------|
-| [FT232RL](http://akizukidenshi.com/catalog/g/gI-01739/)  | 1 | ¥400 |
+| [FT230XS](http://akizukidenshi.com/catalog/g/gI-13311/)  | 1 | ¥220 |
 | [1kΩ](http://akizukidenshi.com/catalog/g/gR-11796/)  | 2 | ¥100 |
 | [0.1µF](http://akizukidenshi.com/catalog/g/gP-00355/)| 2 | ¥150 |
 | [10µF](http://akizukidenshi.com/catalog/g/gP-07388/) | 1 | ¥150 |
